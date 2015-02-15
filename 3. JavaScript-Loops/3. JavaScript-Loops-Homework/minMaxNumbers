@@ -1,0 +1,18 @@
+function findMinAndMax(n){
+    var min = n[0];
+    var max = n[0];
+    for (var i = 0; i < n.length; i++){
+        if ( n[i] > max){
+            max = n[i]
+        }
+        if ( n[i]<min){
+            min = n[i]
+        }
+    }
+    console.log("Min :" + min);
+    console.log("Max :" + max);
+}
+
+findMinAndMax([1, 2, 1, 15, 20, 5, 7, 31]);
+findMinAndMax([2, 2, 2, 2, 2]);
+findMinAndMax([500, 1, -23, 0, -300, 28, 35, 12]);
