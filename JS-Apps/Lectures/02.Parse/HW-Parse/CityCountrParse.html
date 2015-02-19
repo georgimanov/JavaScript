@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>City / Country</title>
+    <style>
+        div{
+            border: 1px solid tomato;
+        }
+        form{
+            border: 1px solid blue;
+        }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="ajaxConnecAndPrint.js"></script>
+    <script src="funtions.js"></script>
+
+</head>
+<body>
+<div id="country">
+    <p>List of countries:</p>
+</div>
+<div id="city" >
+    <p>List of cities:</p>
+</div>
+
+<label for="myForm">Chose action:</label>
+<form id="myForm" >
+
+    <select id="getClass">
+        <option value="City">City</option>
+        <option value="Country">Country</option>
+    </select>
+
+    <select id="myList">
+        <script>
+            $( document ).ready(function() {
+                getAllSelected($('#getClass').val());
+                $( "#getClass" ).bind( "change", function(){
+                    $('#myList').children().remove();
+                    getAllSelected($('#getClass').val());
+                } );
+            });
+        </script>
+    </select>
+    <select id="by-country">
+        <script>
+            $( document ).ready(function() {
+                var printAll = '';
+                $('#by-country').children().remove();
+                $(countries).each(function (_, country) {
+                    $('#by-country').append($('<option>').attr('value', country.objectId).text(country.name).data('country', country));
+                });
+                $('#by-country').on('change', function () {
+                    var id = $(this).val();
+                    $.ajax({
+                        method: "GET",
+                        url: 'https://api.parse.com/1/classes/City?where={"country":{"__type":"Pointer","className":"Country","objectId":"' + $('#by-country').val() + '"}}',
+                        success: function(){
+
+                            $.each(data.results, function(index, value){
+                            printAll += "<option value="+value['objectId']+">" + value[name] + "</option> ";
+                            });
+                    $('#myList').append(printAll);,
+                        error : function(error){
+                            console.log(error);
+                        }
+                    })
+                });
+            });
+        </script>
+    </select>
+
+    <select id="getAction" name="getAction">
+        <option value="add">add</option>
+        <option value="edit">edit</option>
+        <option value="delete">delete</option>
+    </select>
+
+    <input type="myInput" id="cityName" placeholder="City name">
+    <input type="myInput" id="countryName" placeholder="Country name">
+
+    <input type="button" id="btn" value="go">
+
+
+
+
+
+
+</form>
+</body>
+</html>

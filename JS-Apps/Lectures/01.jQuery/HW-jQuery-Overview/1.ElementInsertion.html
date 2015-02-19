@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Element Insertion</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $( "<p>Test before</p>" ).insertBefore( ".inner" );
+            $( "<p>Test after</p>" ).insertAfter( ".inner" );
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>Greetings</h2>
+    <div class="inner"><b>Hello</b></div>
+    <div class="inner"><b>Goodbye</b></div>
+</div>
+</body>
+</html>

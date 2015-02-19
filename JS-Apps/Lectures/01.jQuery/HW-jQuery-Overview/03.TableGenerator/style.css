@@ -1,0 +1,24 @@
+
+table th, table td {
+    border: 1px solid black;
+}
+
+#table-header {
+    background-color: #76923c;
+}
+
+#json {
+    width: 50%;
+    margin: 10px auto;
+    display: block;
+}
+
+#submit {
+    margin: 30px auto;
+    display: block;
+}
+
+p {
+    text-align: center;
+}
+

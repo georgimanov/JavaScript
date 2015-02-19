@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Poll System</title>
+	<meta charset="utf-8">
+  	<link rel="stylesheet" href="poll-system.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<script src="scripts/data-persister.js"></script>
+	<script src="scripts/controller.js"></script>
+	<script src="scripts/ajax-requester.js"></script>
+	<script src="scripts/main.js"></script>
+
+</head>
+
+<body>
+	<header>Poll System &ndash; Questions</header>
+	<div id="here"></div>
+	<main>
+		<ul id="questions">
+		</ul>
+
+		<div id="results">
+			<div>Question</div>
+			<ul>
+				<li>
+					<div class="answer">Answer #1</div>
+					<div class="percents" style="width:60%">60</div>
+				</li>
+				<li>
+					<div class="answer">Answer #2</div>
+					<div class="percents" style="width:10%">10</div>
+				</li>
+				<li>
+					<div class="answer">Answer #3</div>
+					<div class="percents" style="width:30%">30</div>
+				</li>
+			</ul>
+			<button id="backButton">&#8701; Back to Polls</button>
+		</div>
+	</main>
+
+	<footer>&copy; JS Apps Lab &ndash; No Rights Reserved</footer>
+
+	<script>
+		$(function() {
+			$("#questions").on("click", '.voteBtn', function (ev) {
+				ev.preventDefault();
+				ev.stopPropagation();
+
+				var questionId = $(this).parent().parent().data('id');
+				$.ajax({
+					type: 'PUT',
+					url: 'https://api.parse.com/1/classes/Question/' + questionId,
+					dataType: 'json',
+					data: (function () {
+						// Take the answers from the HTML
+						return answers;
+					}()),
+					success: function (data) {
+						console.log(data);
+
+						$( "#questions" ).hide();
+						$( "#results").show();
+					},
+					error : function(error){
+						console.log(error);
+					}
+				});
+			});
+
+			$( "#backButton" ).on( "click", function() {
+				$( "#questions" ).show();
+				$( "#results").hide();
+			});
+		});
+	</script>
+
+</body>
+</html>

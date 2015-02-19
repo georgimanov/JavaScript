@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div class="contentcontainer">
+    <div class="headings alt">
+        <h2>Редактиране на Списание</h2>
+    </div>
+    <div class="contentbox">
+        <form id="form" name="form" method="post" action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+            <p>
+                <label for="name"><strong>Име</strong></label>
+                <input type="text" name="name" id="name" class="inputbox required" value="<?php echo $row['name']; ?>"/>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="embed_magazine_checkbox" id="embed_magazine_checkbox_id" value="" />
+                    <strong>Embed code</strong>
+                </label>
+                <textarea name="embed_magazine_textarea" id="embed_magazine_textarea_id" class="inputbox valid" style="width: 300px; height: 86px;">
+                </textarea>
+            </p>
+
+            <p class="buttons-holder">
+                <input type="submit" name="submit" value="Запиши" id="save" class="btn" />
+                <input type="button" id="cancel" name="cancel" value="Отказ" class="btnalt"/>
+            </p>
+
+        </form>
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        $('#embed_magazine_checkbox_id').on('click', function(){
+            if ( $('#embed_magazine_checkbox_id').is(':checked') ) {
+                $('#embed_magazine_textarea_id').prop('disabled', true);
+            } else  {
+                $('#embed_magazine_textarea_id').removeAttr('disabled');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        var validateDecimal =  $( ".decimal" );
+
+        validateDecimal.keypress(function() {
+            if( ! ( $.isNumeric( $( this ).val() )) && $( this ).val() !== ''  ){
+                $( this ).css('box-shadow', '0px 0px 3px red');
+            } else {
+                $( this ).css('box-shadow', 'none');
+            }
+        });
+
+        validateDecimal.bind('change', function () {
+            if ( ! ($.isNumeric( this.val() )) && this.val() !== '' ) {
+                $( this ).css('box-shadow', '0px 0px 3px red');
+            } else {
+                $( this ).css('box-shadow', 'none');
+            }
+        });
+    </script>
+
+</head>
+<body>
+<input type="text" name="price" class="decimal" id="target">
+</body>
+</html>

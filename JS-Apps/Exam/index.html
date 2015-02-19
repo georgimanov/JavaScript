@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <script src="libs/jquery-2.1.1.js"></script>
+    <script src="libs/jquery.noty.packaged.min.js"></script>
+    <script src="libs/jquery.validate.js"></script>
+    <script src="scripts/ajaxRequester.js"></script>
+    <script src="scripts/userSession.js"></script>
+    <script src="scripts/app.js"></script>
+</head>
+
+<body>
+
+
+<div id="wrapper">
+    <header>
+        <img class="img-header" src="imgs/trash.png" width="50px"/>
+        <h1 class="site-header">Products</h1>
+        <nav id="menu">
+            <ul id="menu-guest">
+                <li class="nav-button"><a href="#" id="btn-nav-guest-home">Home</a></li>
+                <li class="nav-button"><a href="#" id="btn-nav-guest-login">Login</a></li>
+                <li class="nav-button"><a href="#" id="btn-nav-guest-register">Register</a></li>
+            </ul>
+            <ul id="menu-user">
+                <li class="nav-button"><a href="#" id="btn-nav-user-home">Home</a></li>
+                <li class="nav-button"><a href="#" id="btn-nav-user-products">Products</a></li>
+                <li class="nav-button"><a href="#" id="btn-nav-user-add-product">Add Product</a></li>
+                <li class="nav-button"><a href="#" id="btn-nav-user-logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main">
+
+        <!-- Registration form -->
+        <section id="section-register-guest">
+            <div class="register-form">
+                <header class="main-header">Register</header>
+                <div class="data">
+                    <label for="username-register">Username:</label>
+                    <input type="text" id="username-register" placeholder="Username..."/>
+                    <label for="password-register">Password:</label>
+                    <input type="password" id="password-register" placeholder="Password..."/>
+                    <label for="confirm-password-register">Confirm password:</label>
+                    <input type="password" id="confirm-password-register" placeholder="Password again..."/>
+                </div>
+                <div class="panel">
+                    <button class="button" id="register-button">Register</button>
+                    <span>or</span>
+                    <a href="#" class="btn-login-from">Login</a>
+                </div>
+            </div>
+        </section>
+
+        <br />
+
+         <!--Login form-->
+        <section id="section-login-guest">
+            <div class="login-form">
+                <header class="main-header">Login</header>
+                <div class="data">
+                    <label for="username-login">Username:</label>
+                    <input type="text" id="username-login" placeholder="Username..."/>
+                    <label for="password-login">Password:</label>
+                    <input type="password" id="password-login" placeholder="Password..."/>
+                </div>
+                <div class="panel">
+                    <button id="login-button" class="button">Login</button>
+                    <span>or</span>
+                    <a href="#" id="btn-register-from">Register</a>
+                </div>
+            </div>
+        </section>
+
+        <br />
+
+        <!-- Welcome guest -->
+        <section id="section-welcome-guest">
+            <div class="welcome-message" id="welcome-message-guest">
+                <header class="main-header">Welcome to Products!</header>
+                <h3 class="centered">Please <a href="#" class="btn-login-from">login</a> to access the site.</h3>
+            </div>
+        </section>
+        <br />
+
+        <!-- Welcome user -->
+        <section id="section-welcome-user">
+            <div class="welcome-message" id="welcome-message-user">
+                <header class="main-header" id="header-welcome-user">Welcome, <span></span>!</header>
+            </div>
+        </section>
+
+        <br />
+
+        <!-- Add product form -->
+        <section id="section-add-product">
+            <div class="add-product-form">
+                <header class="main-header">Add new product</header>
+                <div class="data">
+                    <label for="add-product-name">Name:</label>
+                    <input type="text" id="add-product-name" placeholder="Item name..."/>
+                    <label for="add-product-category">Category:</label>
+                    <input type="text" id="add-product-category" placeholder="Category..."/>
+                    <label for="add-product-price">Price:</label>
+                    <input type="text" id="add-product-price" placeholder="0.00"/>
+                </div>
+                <div class="panel">
+                    <button id="add-product-button" class="button">Add</button>
+                    <a href="#">
+                        <button class="button" id="add-product-button-cancel">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <br />
+
+        <!-- Delete product form -->
+        <section id="section-delete-product">
+            <div class="delete-product-form">
+                <header class="main-header">Delete product</header>
+                <div class="data">
+                    <label>Name:</label>
+                    <input type="text" value="3 Windows" disabled/>
+                    <label>Category:</label>
+                    <input type="text" value="Other" disabled/>
+                    <label>Price:</label>
+                    <input type="text" value="44.00" disabled>
+                </div>
+                <div class="panel">
+                    <button id="delete-product-button" class="button">Delete</button>
+                    <a href="#">
+                        <button class="button">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <br />
+
+        <!-- Edit product form -->
+        <section id="section-edit-product">
+            <div class="edit-product-form">
+                <header class="main-header">Edit product</header>
+                <div class="data">
+                    <label for="product-edit-section-name">Name:</label>
+                    <input type="text" id="product-edit-section-name" placeholder="Name..."/>
+                    <label for="product-edit-section-category">Category:</label>
+                    <input type="text" id="product-edit-section-category" placeholder="Category..."/>
+                    <label for="product-edit-section-price">Price:</label>
+                    <input type="text" id="product-edit-section-price" placeholder="0.00"/>
+                </div>
+                <div class="panel">
+                    <button id="product-section-button-edit" class="button">Edit</button>
+                    <a href="#">
+                        <button class="product-section-button-cancel">Cancel</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <br />
+
+        <!-- Products list -->
+        <section id="products">
+            <aside class="filters">
+                <h3>Filter</h3>
+                <input id="search-bar" class="search-bar" type="text" placeholder="Keyword.."/>
+                <label>Price:</label>
+                <input id="min-price" class="input-num" type="number" value="0" min="0"/>
+                <span>-</span>
+                <input id="max-price" class="input-num" type="number" value="10000"/>
+                <label>Category:</label>
+                <select id="category" class="category">
+                    <option value="All">All</option>
+                    <option value="Animals">Animals</option>
+                    <option value="Food">Food</option>
+                    <option value="Other">Other</option>
+                </select>
+                <button id="filter" class="filter-button">Filter</button>
+                <p class="clear-filters" id="clear-filters">Clear filters</p>
+            </aside>
+            <div class="products">
+                <ul>
+
+                </ul>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+</body>
+
+</html>
