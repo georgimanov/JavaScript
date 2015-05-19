@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p id="result"></p>
+
+    <div>Hi</div>
+    <div>
+        <div class="someClass">Hello</div>
+    </div>
+    <div>
+        <div class="otherClass">How are you?</div>
+        <div id="someId">.</div>
+        <div id="otherId">..</div>
+        <div></div>
+    </div>
+    <div>.</div>
+    <p>For more info check the code or the console.</p>
+    <script>
+        var divs = document.getElementsByTagName("div");
+        var result = divs.length;
+
+        var p = document.getElementById("result");
+        p.innerHTML = "Number of divs in the page:" + result;
+    </script>
+    <script src="_04.CountDivs.js"></script>
+</body>
+</html>
