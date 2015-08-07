@@ -35,7 +35,39 @@ function solve() {
     var inputSearch = document.createElement('input');
     inputSearch.type = "text";
 
-    inputSearch.addEventListener('change', function(ev){
+    var labelSearch = document.createElement("label");
+    labelSearch.for = labelSearch;
+    labelSearch.innerHTML = "Search:";
+
+    searchControls.appendChild(labelSearch);
+    searchControls.appendChild(inputSearch);
+
+    // RESULT CONTROLS
+    var resultControls = document.createElement('div');
+    resultControls.className = 'result-controls';
+
+    var listOfItems = document.createElement('ul');
+    listOfItems.className = 'items-list';
+
+    resultControls.appendChild(listOfItems);
+
+	// Append controls to ItemsControl
+    itemsControl.appendChild(addControls);
+    itemsControl.appendChild(searchControls);
+    itemsControl.appendChild(resultControls);
+    fragment.appendChild(itemsControl);
+    root.appendChild(fragment);
+
+	// Remove element on click
+    listOfItems.addEventListener('click', function(ev){
+      var target = ev.target;
+      if(target.tagName === 'INPUT'){
+        target.parentNode.parentNode.removeChild(target.parentNode);
+      };
+    },false);
+	
+	// Search on 'enter'
+	inputSearch.addEventListener('change', function(ev){
       var text = ev.target.value;
       var liChildren = listOfItems.getElementsByTagName('li');
 
@@ -56,39 +88,11 @@ function solve() {
             currentLi.style.display = 'none';
           }
         }
-
       }
     }, false);
+	
 
-    var labelSearch = document.createElement("Label");
-    labelSearch.for = labelSearch;
-    labelSearch.innerHTML = "Search:";
-
-    searchControls.appendChild(labelSearch);
-    searchControls.appendChild(inputSearch);
-
-    // RESULT CONTROLS
-    var resultControls = document.createElement('div');
-    resultControls.className = 'result-controls';
-
-    var listOfItems = document.createElement('ul');
-    listOfItems.className = 'items-list';
-
-    resultControls.appendChild(listOfItems);
-
-    itemsControl.appendChild(addControls);
-    itemsControl.appendChild(searchControls);
-    itemsControl.appendChild(resultControls);
-    fragment.appendChild(itemsControl);
-    root.appendChild(fragment);
-
-    listOfItems.addEventListener('click', function(ev){
-      var target = ev.target;
-      if(target.tagName === 'INPUT'){
-        target.parentNode.parentNode.removeChild(target.parentNode);
-      };
-    },false);
-
+	// Add new element on Click
     buttonAdd.addEventListener('click', function(ev){
       var listItem = document.createElement('li');
       listItem.className = 'list-item';
