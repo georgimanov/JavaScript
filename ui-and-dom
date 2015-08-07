@@ -1,6 +1,5 @@
 function solve() {
   return function (selector, isCaseSensitive) {
-    var counter;
     var root = document.querySelector(selector);
     var isSearchCaseSensitive = isCaseSensitive || false;
     var fragment = document.createDocumentFragment();
@@ -51,14 +50,14 @@ function solve() {
 
     resultControls.appendChild(listOfItems);
 
-	// Append controls to ItemsControl
+    // Append controls to ItemsControl
     itemsControl.appendChild(addControls);
     itemsControl.appendChild(searchControls);
     itemsControl.appendChild(resultControls);
     fragment.appendChild(itemsControl);
     root.appendChild(fragment);
 
-	// Remove element on click
+    // Remove element on 'click'
     listOfItems.addEventListener('click', function(ev){
       var target = ev.target;
       if(target.tagName === 'INPUT'){
@@ -92,7 +91,7 @@ function solve() {
     }, false);
 	
 
-	// Add new element on Click
+	// Add new element on 'click'
     buttonAdd.addEventListener('click', function(ev){
       var listItem = document.createElement('li');
       listItem.className = 'list-item';
