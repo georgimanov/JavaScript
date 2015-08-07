@@ -1,0 +1,106 @@
+function solve() {
+  return function (selector, isCaseSensitive) {
+    var counter;
+    var root = document.querySelector(selector);
+    var isSearchCaseSensitive = isCaseSensitive || false;
+    var fragment = document.createDocumentFragment();
+
+    var itemsControl = document.createElement('div');
+    itemsControl.className = 'items-control';
+
+    // ADD CONTROLS
+    var addControls = document.createElement('div');
+    addControls.className = 'add-controls';
+
+    var inputAdd = document.createElement('input');
+    inputAdd.type = "text";
+
+    var labelAdd = document.createElement("label");
+    labelAdd.for = inputAdd;
+    labelAdd.innerHTML = "Enter text";
+
+    var buttonAdd = document.createElement('input');
+    buttonAdd.setAttribute('type', 'button');
+    buttonAdd.setAttribute('value', 'Add');
+    buttonAdd.className = 'button';
+
+    addControls.appendChild(labelAdd);
+    addControls.appendChild(inputAdd);
+    addControls.appendChild(buttonAdd);
+
+    // SEARCH CONTROLS
+    var searchControls = document.createElement('div');
+    searchControls.className = 'search-controls';
+
+    var inputSearch = document.createElement('input');
+    inputSearch.type = "text";
+
+    inputSearch.addEventListener('change', function(ev){
+      var text = ev.target.value;
+      var liChildren = listOfItems.getElementsByTagName('li');
+
+      for (var i= 0, len = liChildren.length; i < len; i++){
+        var currentLi = liChildren[i];
+        var textCurrentLi = currentLi.innerHTML.substring(0, currentLi.innerHTML.indexOf('<input type="button" value="X" class="button">'));
+
+        if(!isSearchCaseSensitive){
+          if(textCurrentLi.toLocaleLowerCase().lastIndexOf(text.toLocaleLowerCase()) >= 0){
+            currentLi.style.display = 'block';
+          } else{
+            currentLi.style.display = 'none';
+          }
+        } else{
+          if(textCurrentLi.lastIndexOf(text) >= 0){
+            currentLi.style.display = 'block';
+          } else{
+            currentLi.style.display = 'none';
+          }
+        }
+
+      }
+    }, false);
+
+    var labelSearch = document.createElement("Label");
+    labelSearch.for = labelSearch;
+    labelSearch.innerHTML = "Search:";
+
+    searchControls.appendChild(labelSearch);
+    searchControls.appendChild(inputSearch);
+
+    // RESULT CONTROLS
+    var resultControls = document.createElement('div');
+    resultControls.className = 'result-controls';
+
+    var listOfItems = document.createElement('ul');
+    listOfItems.className = 'items-list';
+
+    resultControls.appendChild(listOfItems);
+
+    itemsControl.appendChild(addControls);
+    itemsControl.appendChild(searchControls);
+    itemsControl.appendChild(resultControls);
+    fragment.appendChild(itemsControl);
+    root.appendChild(fragment);
+
+    listOfItems.addEventListener('click', function(ev){
+      var target = ev.target;
+      if(target.tagName === 'INPUT'){
+        target.parentNode.parentNode.removeChild(target.parentNode);
+      };
+    },false);
+
+    buttonAdd.addEventListener('click', function(ev){
+      var listItem = document.createElement('li');
+      listItem.className = 'list-item';
+      listItem.innerHTML = inputAdd.value;
+
+      var buttonRemove = document.createElement('input');
+      buttonRemove.setAttribute('type', 'button');
+      buttonRemove.setAttribute('value', 'X');
+      buttonRemove.className = 'button';
+
+      listItem.appendChild(buttonRemove);
+      listOfItems.appendChild(listItem);
+    },false);
+  };
+}
