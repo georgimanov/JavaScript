@@ -1,5 +1,6 @@
 function solve() {
   return function (selector, isCaseSensitive) {
+    var counter;
     var root = document.querySelector(selector);
     var isSearchCaseSensitive = isCaseSensitive || false;
     var fragment = document.createDocumentFragment();
@@ -36,9 +37,9 @@ function solve() {
 
     var labelSearch = document.createElement("label");
     labelSearch.for = labelSearch;
-    labelSearch.innerHTML = "Search:";
+    labelSearch.innerHTML = "Search";
 
-    searchControls.appendChild(labelSearch);
+    inputSearch.appendChild(labelSearch);
     searchControls.appendChild(inputSearch);
 
     // RESULT CONTROLS
@@ -50,14 +51,14 @@ function solve() {
 
     resultControls.appendChild(listOfItems);
 
-    // Append controls to ItemsControl
+	// Append controls to ItemsControl
     itemsControl.appendChild(addControls);
     itemsControl.appendChild(searchControls);
     itemsControl.appendChild(resultControls);
     fragment.appendChild(itemsControl);
     root.appendChild(fragment);
 
-    // Remove element on 'click'
+	// Remove element on click
     listOfItems.addEventListener('click', function(ev){
       var target = ev.target;
       if(target.tagName === 'INPUT'){
@@ -74,24 +75,24 @@ function solve() {
         var currentLi = liChildren[i];
         var textCurrentLi = currentLi.innerHTML.substring(0, currentLi.innerHTML.indexOf('<input type="button" value="X" class="button">'));
 
-        if(!isSearchCaseSensitive){
-          if(textCurrentLi.toLocaleLowerCase().lastIndexOf(text.toLocaleLowerCase()) >= 0){
-            currentLi.style.display = 'block';
+        if(isSearchCaseSensitive){
+          if(textCurrentLi.lastIndexOf(text) >= 0){
+			currentLi.style.display = 'block';
           } else{
-            currentLi.style.display = 'none';
+			currentLi.style.display = 'none';
           }
         } else{
-          if(textCurrentLi.lastIndexOf(text) >= 0){
-            currentLi.style.display = 'block';
-          } else{
-            currentLi.style.display = 'none';
-          }
+			if(textCurrentLi.toLocaleLowerCase().lastIndexOf(text.toLocaleLowerCase()) >= 0){
+			  currentLi.style.display = 'block';
+			} else{
+			  currentLi.style.display = 'none';       
+			}
         }
       }
     }, false);
 	
 
-	// Add new element on 'click'
+	// Add new element on Click
     buttonAdd.addEventListener('click', function(ev){
       var listItem = document.createElement('li');
       listItem.className = 'list-item';
@@ -106,4 +107,4 @@ function solve() {
       listOfItems.appendChild(listItem);
     },false);
   };
-} 
+}
