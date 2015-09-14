@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span{
+            display: inline-block;
+            border: 1px solid tomato;
+            background-color: yellow;
+            margin: 10px;
+        }
+        #garbage{
+            display: inline-block;
+            border: 1px solid tomato;
+            background-color: green;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div><span class="trash" data-garbage="0">trash: 0</span></div>
+<div><span class="trash" data-garbage="1">trash: 1</span></div>
+<div><span class="trash" data-garbage="0">trash: 0</span></div>
+<div><span class="trash" data-garbage="1">trash: 1</span></div>
+<div><span class="trash" data-garbage="0">trash: 0</span></div>
+<div id="garbage">Trash here:</div>
+</body>
+<script src="jquery-2.1.4.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("span[data-garbage='1']").detach().appendTo('#garbage');
+    });
+</script>
+</html>

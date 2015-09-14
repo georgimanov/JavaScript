@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Fortune cookies</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css">
+
+</head>
+<body>
+    <div id="root" class="container">
+        <header>
+            <h1 class="page-header"><img src="http://i475.photobucket.com/albums/rr115/JoleneDarling/BabyCookieMonster.jpg" border="0" alt="Baby Cookie Monster photo BabyCookieMonster.jpg" width="40"/>Fortune Cookies</h1>
+            <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/home">Home</a> </li>
+                    <li><a href="#/my-cookie">My cookie</a></li>
+
+
+
+
+                </ul>
+                <div class="pull-right">
+                    <ul class="nav navbar-nav">
+                    <li><a href="#/login">Login</a> </li>
+                    <li><a href="#/register">Register</a></li>
+                    <li><a href="#/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+    </div>
+
+    <div id="content" class="container">
+    </div>
+
+    <!-- LIBS -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/sammy/lib/sammy.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/sha1/index.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+
+    <!-- APP -->
+
+    <!-- CONTROLLERS-->
+    <script src="js/controllers/home-controller.js"></script>
+    <script src="js/controllers/users-controller.js"></script>
+    <script src="js/controllers/cookies-controller.js"></script>
+
+    <!-- APP SETUP-->
+    <script src="js/validator.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

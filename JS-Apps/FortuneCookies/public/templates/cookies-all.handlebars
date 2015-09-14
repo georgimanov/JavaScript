@@ -1,0 +1,37 @@
+<h2>Fortune Cookies</h2>
+
+
+    <div class="list-group">
+        <h3>Sort by:</h3>
+        <a href="#/home/sort/category" type="button" role="button" class="btn btn-info">Category</a>
+        <a href="#/home/sort/date" type="button" role="button" class="btn btn-info">Date</a>
+        <a href="#/home/sort/likes" type="button" role="button" class="btn btn-info">Likes</a>
+    </div>
+
+{{#if this}}
+    <div class="row">
+        {{#each this}}
+            <div class="cookie-item" data-id="{{id}}">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{img}}" alt="{{text}}">
+                        <div class="caption">
+                            <h3>{{category}}</h3>
+                            <p>{{text}}</p>
+
+                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                <p class="cookie-item" data-id="{{id}}">
+                                    <button type="button" class="btn btn-primary btn-cookie-like">Likes {{likes}}</button>
+                                    <button type="button" class="btn btn-default btn-cookie-dislike">Dislikes {{dislikes}}</button>
+                                    <button type="button" class="btn btn-success btn-cookie-share">Share</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    <h3>No fortune cookies!</h3>
+{{/if}}
